@@ -2,13 +2,12 @@
 Projeto Front e Back
 
 
-##FRONT rodando na porta 5000
+## FRONT rodando na porta 5000
 
-##BACK rodando na porta 3000
+## BACK rodando na porta 3000
 
-para rodar o back `npm install` depois `npm start`
-
-para rodar o front `npm install` depois ` npm start`
+- para rodar o back `npm install` depois `npm start`
+- para rodar o front `npm install` depois ` npm start`
 
 OBS: Lembrar de mudar as URLS do projeto pois estará apontando pra URL da minha aplicação e não de vocês
 
