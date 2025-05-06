@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
+
+var url = process.env.URL_API;
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-  fetch("https://organic-enigma-6q6qqgwgj7rc4gxp-3000.app.github.dev/students/")
+  console.log('eveno aqui', )
+
+  fetch(url + "students") // Corrigido para usar a variável `url` corretamente
     .then((res) => {
       return res.json()
     })
