@@ -26,7 +26,15 @@ students = [
 
 /* GET all students listing. */
 router.get('/', function (req, res, next) {
-    res.send(students);
+    listStudents = students.map(s => {
+        return {
+            id: s.id,
+            nome: s.nome,
+            matricula: s.matricula,
+            sexo: s.sexo
+        }
+    })
+    res.send(listStudents);
 });
 
 /* GET by id students listing. */
