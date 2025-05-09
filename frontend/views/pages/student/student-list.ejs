@@ -1,0 +1,31 @@
+<h3>Lista de Estudantes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Matricula</th>
+            <th>Sexo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%for(let student of students){%>
+            <tr>
+              <%for(let prop in student){ %>
+                <td>
+                  <%=student[prop]%>
+                </td>
+                <%}%>
+                  <td>
+                    <a href="/students/edit/<%=student.id%>"
+                      class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">edit</i></a>
+                    <a href="/students/delete/<%=student.id%>"
+                      class="btn-floating btn-small waves-effect waves-light red"><i
+                        class="material-icons">delete</i></a>
+                  </td>
+            </tr>
+            <%}%>
+        </tbody>
+      </table>

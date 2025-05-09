@@ -1,30 +1,40 @@
 var express = require('express');
 var router = express.Router();
+var studentsModel = require('../models/students-models.js');
 
-
-// BANCO DE DADOS
-students = [
-    {
-        nome: "Pedro",
-        matricula: 123456,
-        sexo: "m",
-        id: 1
-    },
-    {
-        nome: "Lari",
-        matricula: 789456,
-        sexo: "m",
-        id: 2
-    },
-    {
-        nome: "Cris",
-        matricula: 545656,
-        sexo: "m",
-        id: 3
-    }
-]
+/**
+ * @swagger
+ * /students:
+ *   get:
+ *     summary: Retorna todos os estudantes
+ *     tags:
+ *       - Estudantes
+ *     responses:
+ *       200:
+ *         description: Lista de estudantes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: ID do estudante
+ *                   nome:
+ *                     type: string
+ *                     description: Nome do estudante
+ *                   matricula:
+ *                     type: string
+ *                     description: Matrícula do estudante
+ *                   sexo:
+ *                     type: string
+ *                     description: Sexo do estudante
+ */
 
 /* GET all students listing. */
+<<<<<<< HEAD
 router.get('/', function (req, res, next) {
     listStudents = students.map(s => {
         return {
@@ -35,46 +45,81 @@ router.get('/', function (req, res, next) {
         }
     })
     res.send(listStudents);
+=======
+router.get('/', async function (req, res, next) {
+    studentsModel.getStudents(res)
+>>>>>>> 288f868 (adicionando swagger e db)
 });
 
-/* GET by id students listing. */
+
 router.get('/:id', function (req, res, next) {
-    // pegar dados na requisição
-    // params -> parâmentros Ex: /1
-    // body ->  corpo { objetos }
-    
-    id =  req.params.id
-    result = students.filter(s => s.id == id)
-    res.send(result[0]);
+    id = req.params.id
+    studentsModel.getStudentById(id, res)
 });
+
+/**
+ * @swagger
+ * /students:
+ *   post:
+ *     summary: Cria um novo estudante
+ *     tags:
+ *       - Estudantes
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nome:
+ *                 type: string
+ *                 description: Nome do estudante
+ *               matricula:
+ *                 type: string
+ *                 description: Matrícula do estudante
+ *               sexo:
+ *                 type: string
+ *                 description: Sexo do estudante
+ *     responses:
+ *       201:
+ *         description: Estudante criado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: ID do estudante
+ *                 nome:
+ *                   type: string
+ *                   description: Nome do estudante
+ *                 matricula:
+ *                   type: string
+ *                   description: Matrícula do estudante
+ *                 sexo:
+ *                   type: string
+ *                   description: Sexo do estudante
+ */
 
 // Salvar estudante
 router.post('/', function (req, res, next) {
     student = req.body
-    student.id = students.length + 1
-    students.push(student)
-    res.send(student)
+    console.log('student', student)
+    studentsModel.createStudent(student,res)
 })
 
 // Atualizar estudante
-router.patch('/:id',function(req, res, next){
+router.patch('/:id', function (req, res, next) {
     id = req.params.id
     student = req.body
-
-    students[id].nome = student.nome
-    students[id].matricula = student.matricula
-    students[id].sexo = student.sexo
-
-    res.send(students[id])
+    studentsModel.updateStudent(id, student, res)
 })
 
 // Deletar Estudante
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', function (req, res, next) {
     id = req.params.id
-
-    students.splice(id, 1)
-
-    res.send('Estudante deletado')
+    studentsModel.deleteStudent(id)
 })
 
 module.exports = router;

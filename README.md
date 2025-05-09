@@ -14,3 +14,8 @@ OBS: Lembrar de mudar as URLS do projeto pois estará apontando pra URL da minha
 OBS: Lembrar de deixar as portas públicas para testar com ferramentas de testes de API como hoppscotch e postman e também testar no celular
 
 OBS: Caso faça mudanças nos arquivos de rotas ou do app.js tem que parar e levantar o servidor novamente, ou use o nodemon.
+<<<<<<< HEAD
+=======
+
+OBS: Criar o `.env` para adicionar as variaveis de ambientes da aplicação front e no back
+>>>>>>> 288f868 (adicionando swagger e db)
